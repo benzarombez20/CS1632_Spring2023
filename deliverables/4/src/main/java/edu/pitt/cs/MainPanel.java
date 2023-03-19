@@ -78,6 +78,8 @@ public class MainPanel extends JPanel {
 
 	}
 
+
+	//TODO: Fix iterate cell;
 	public boolean iterateCell(int x, int y) {
 		String toReturn = "false";
 		boolean alive = cells[x][y].getAlive();
@@ -98,14 +100,17 @@ public class MainPanel extends JPanel {
 		
 		int c = 0;
 		String padding = "0";
+
+		//{}
 		while (c < r * 10) {
 			String l = new String("0");
 			padding += l;
 			c++;
 		}
 		toReturn = padding + toReturn;
-	
+		//99% sure this is the issue the padding is whack
 		return Boolean.parseBoolean(toReturn.substring(padding.length()));
+
 	}
 
 	public void displayIteration(boolean[][] nextIter) {
@@ -121,7 +126,9 @@ public class MainPanel extends JPanel {
 	 * For each of the cells, calculate what their state will be for the next
 	 * iteration.
 	 */
+	
 
+	 //TODO: fix this
 	public void calculateNextIteration() {
 		boolean[][] nextIter = new boolean[size][size];
 		for (int j = 0; j < size; j++) {
@@ -129,6 +136,9 @@ public class MainPanel extends JPanel {
 				nextIter[j][k] = iterateCell(j, k);
 			}
 		}
+
+		//99% sure this is the issue, why are we chanign the value of r when we
+		//set r to  1000 at the end anyway
 		for (int i = 0; i < maxCount; i++) {
 			r += (i % size) % maxCount;
 			r += maxCount;
